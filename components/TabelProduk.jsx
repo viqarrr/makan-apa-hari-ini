@@ -101,7 +101,7 @@ export default function TabelProduk({ daftarProduk = [] }) {
           aria-labelledby="judul-dialog-hapus"
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
         >
-          <div className="w-full max-w-md rounded-2xl border border-garis bg-latar p-6 shadow-xl">
+          <div className="w-full max-w-md rounded-[18px] border border-garis bg-latar p-6">
             <h3 id="judul-dialog-hapus" className="text-lg font-bold text-teks">
               Hapus Produk
             </h3>

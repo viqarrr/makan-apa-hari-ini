@@ -12,7 +12,7 @@ export default function TombolWhatsApp({ produk, jumlah = 1 }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex w-full items-center justify-center rounded-lg bg-utama px-5 py-3 font-semibold text-white hover:bg-utama-gelap sm:w-auto"
+      className="inline-flex w-full items-center justify-center rounded-full bg-[#0066cc] px-6 py-3.5 text-[17px] font-medium text-white transition-transform active:scale-[0.95] whitespace-nowrap"
     >
       Pesan via WhatsApp
     </a>

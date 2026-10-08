@@ -28,22 +28,22 @@ export default function PemesananProduk({ produk }) {
   };
 
   return (
-    <div className="mt-2 flex flex-col gap-4 rounded-2xl border border-garis bg-permukaan p-4 sm:p-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="flex flex-col gap-5 rounded-[18px] border border-[#e0e0e0] bg-[#f5f5f7] p-6">
+      {/* Pemilih Jumlah Porsi */}
+      <div className="flex items-center justify-between gap-4">
         <div>
-          <span className="text-sm font-semibold text-teks">Pilih Jumlah Porsi</span>
-          <p className="text-xs text-teks-lembut">
-            Sisa kuota: <span className="font-semibold text-teks">{produk.slot_tersedia ?? 15} porsi</span>
+          <span className="text-[14px] font-semibold text-[#1d1d1f]">Jumlah Porsi</span>
+          <p className="text-[12px] text-[#7a7a7a]">
+            Tersisa {maxSlot} porsi
           </p>
         </div>
 
-        {/* Kontrol Input Jumlah Porsi */}
-        <div className="flex items-center rounded-lg border border-garis bg-latar">
+        <div className="flex items-center rounded-full border border-[#e0e0e0] bg-white px-1 py-1">
           <button
             type="button"
             onClick={handleKurang}
             disabled={jumlah <= 1}
-            className="flex h-9 w-9 items-center justify-center text-lg font-bold text-teks-lembut hover:text-teks disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[16px] font-medium text-[#1d1d1f] hover:bg-[#f5f5f7] active:scale-[0.95] disabled:opacity-30 disabled:hover:bg-transparent"
             aria-label="Kurangi porsi"
           >
             -
@@ -54,13 +54,13 @@ export default function PemesananProduk({ produk }) {
             max={maxSlot}
             value={jumlah}
             onChange={handleChange}
-            className="h-9 w-12 border-x border-garis text-center text-sm font-semibold text-teks focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            className="h-8 w-10 text-center text-[14px] font-semibold text-[#1d1d1f] focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <button
             type="button"
             onClick={handleTambah}
             disabled={jumlah >= maxSlot}
-            className="flex h-9 w-9 items-center justify-center text-lg font-bold text-teks-lembut hover:text-teks disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-[16px] font-medium text-[#1d1d1f] hover:bg-[#f5f5f7] active:scale-[0.95] disabled:opacity-30 disabled:hover:bg-transparent"
             aria-label="Tambah porsi"
           >
             +
@@ -68,17 +68,33 @@ export default function PemesananProduk({ produk }) {
         </div>
       </div>
 
-      {/* Total Harga Dinamis */}
-      <div className="flex items-center justify-between border-t border-garis pt-3">
-        <span className="text-sm font-medium text-teks-lembut">Total Harga:</span>
-        <span className="text-xl font-extrabold text-harga">
+      {/* Ringkasan Porsi & Estimasi Gizi */}
+      <div className="border-t border-[#e0e0e0] pt-4 text-[13px] text-[#7a7a7a] flex flex-col gap-1.5">
+        <p className="text-[#1d1d1f]">
+          <span className="font-semibold">{jumlah} porsi siap santap.</span> Porsi seimbang, estimasi 500 sampai 650 kkal per sajian.
+        </p>
+        <p>
+          Jadwal pengiriman jam 11.00 WIB tiba tepat waktu untuk makan siang Anda.
+        </p>
+        {produk.catatan_pengiriman && (
+          <p className="text-[12px] text-[#7a7a7a] pt-1">
+            Catatan: {produk.catatan_pengiriman}
+          </p>
+        )}
+      </div>
+
+      {/* Kalkulasi Total Harga Dinamis */}
+      <div className="flex items-center justify-between border-t border-[#e0e0e0] pt-4">
+        <span className="text-[14px] text-[#7a7a7a]">Total Pembayaran</span>
+        <span className="text-[21px] font-semibold tracking-tight text-[#1d1d1f]">
           {formatRupiah(totalHarga)}
         </span>
       </div>
 
-      {/* Tombol Pemesanan WhatsApp */}
-      <TombolWhatsApp produk={produk} jumlah={jumlah} />
+      {/* Tombol WhatsApp Utama */}
+      <div className="pt-2">
+        <TombolWhatsApp produk={produk} jumlah={jumlah} />
+      </div>
     </div>
   );
 }
-

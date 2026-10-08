@@ -21,37 +21,57 @@ export default async function HalamanDetailProduk({ params }) {
   }
 
   const hariRilis = produk.hari_rilis || produk.kategori || "Senin";
+  const slot = produk.slot_tersedia ?? 15;
 
   return (
-    <article className="grid gap-8 py-8 md:grid-cols-2 md:py-12">
-      <img
-        src={produk.foto_url}
-        alt={produk.nama}
-        className="aspect-square w-full rounded-2xl border border-garis bg-permukaan object-cover"
-      />
-      <div className="flex flex-col gap-4">
-        <Link href="/" className="text-sm text-teks-lembut underline underline-offset-4 hover:text-utama">
-          Kembali ke katalog
+    <article className="mx-auto max-w-5xl px-4 py-8 sm:py-12">
+      {/* Tautan Kembali */}
+      <nav className="mb-6">
+        <Link
+          href="/"
+          className="text-[14px] text-[#0066cc] hover:underline"
+        >
+          Semua Menu
         </Link>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-utama/10 px-3 py-0.5 text-xs font-semibold text-utama">
-            Hari {hariRilis}
-          </span>
-          {produk.kategori && produk.kategori !== hariRilis && (
-            <span className="text-xs text-teks-lembut">{produk.kategori}</span>
-          )}
+      </nav>
+
+      {/* Grid Detail Hidangan: Photography-First */}
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
+        {/* Foto Hidangan Besar Berpusat di Layar dengan Bayangan Sistem Produk */}
+        <div className="flex justify-center lg:col-span-7">
+          <div className="w-full max-w-lg overflow-hidden rounded-[18px]">
+            <img
+              src={produk.foto_url}
+              alt={produk.nama}
+              className="food-shadow aspect-square w-full rounded-[18px] bg-[#f5f5f7] object-cover"
+            />
+          </div>
         </div>
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tight">{produk.nama}</h1>
-        <p className="self-start rounded-md bg-harga-latar px-3 py-1 text-xl font-bold text-harga">
-          {formatRupiah(produk.harga)} <span className="text-xs font-normal text-harga/80">/ porsi</span>
-        </p>
-        <p className="max-w-prose leading-relaxed text-teks-lembut">{produk.deskripsi}</p>
-        {produk.catatan_pengiriman && (
-          <p className="rounded-lg border border-garis bg-permukaan px-3 py-2 text-xs text-teks-lembut">
-            📦 {produk.catatan_pengiriman}
+
+        {/* Panel Informasi & Konfigurasi Ringkas */}
+        <div className="flex flex-col gap-6 lg:col-span-5">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-[13px] text-[#7a7a7a]">
+              <span>Hari {hariRilis}</span>
+              <span>•</span>
+              <span>Sisa {slot} Porsi</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-[#1d1d1f] leading-tight">
+              {produk.nama}
+            </h1>
+            <p className="text-[21px] font-semibold text-[#1d1d1f]">
+              {formatRupiah(produk.harga)}{" "}
+              <span className="text-[14px] font-normal text-[#7a7a7a]">/ porsi</span>
+            </p>
+          </div>
+
+          <p className="text-[17px] leading-[1.47] text-[#1d1d1f]">
+            {produk.deskripsi}
           </p>
-        )}
-        <PemesananProduk produk={produk} />
+
+          {/* Panel Konfigurasi Ringkas */}
+          <PemesananProduk produk={produk} />
+        </div>
       </div>
     </article>
   );

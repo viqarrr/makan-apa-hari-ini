@@ -1091,3 +1091,45 @@ Kueri di atas **100% aman** dan tidak akan merusak maupun menghapus data produk 
 
 **Perbaikan:**
 -
+
+## US-EXTRA-02 Redesign
+
+**Prompt:**
+Baca AGENTS.md, DESIGN.md, dan taste-SKILL.md.
+
+Lakukan perombakan menyeluruh pada styling, layout, dan komponen antarmuka aplikasi "Makan Apa Hari Ini" agar sepenuhnya mengadopsi standar Apple Design (Photography-First Editorial Gallery) yang disesuaikan dengan kebutuhan pemesanan katering harian terencana.
+
+Patuhi batasan desain dan token berikut:
+
+1. Palet Warna & Token Visual:
+- Latar belakang halaman dominan Canvas White (#ffffff) dan Canvas Parchment (#f5f5f7) untuk ritme antar-section[cite: 22].
+- Warna teks utama menggunakan Ink (#1d1d1f), teks sekunder Ink Muted (#7a7a7a)[cite: 22].
+- Satu warna interaktif tunggal Action Blue (#0066cc) untuk tautan aktif dan tombol aksi utama[cite: 22]. Dilarang memakai warna aksen kedua[cite: 22].
+- Hapus semua gradien dekoratif pada background maupun teks[cite: 22, 23]. Dilarang menggunakan efek bayangan pada kartu teks, tombol, maupun header[cite: 22].
+- Terapkan bayangan tunggal eksklusif hanya pada foto hidangan makanan: rgba(0, 0, 0, 0.22) 3px 5px 30px 0[cite: 22].
+
+2. Tipografi & Copywriting (Anti-Slop Discipline):
+- Gunakan font SF Pro / Inter dengan kerning rapat pada display headline (tracking-tighter)[cite: 22, 23]. Teks paragraf body diatur pada ukuran 17px dengan leading 1.47 yang nyaman dibaca[cite: 22].
+- Dilarang keras menggunakan karakter em-dash (—) maupun en-dash (–) di seluruh headline, label, deskripsi produk, tombol, dan footer[cite: 23]. Gunakan tanda titik atau koma[cite: 23].
+- Semua teks tombol CTA wajib muat dalam satu baris di desktop (tidak boleh terpotong atau wrap menjadi 2 baris)[cite: 23].
+
+3. Layout Katalog Utama (app/page.jsx & components/KartuProduk.jsx):
+- Hero Section: Rancang split atau left-aligned minimalis[cite: 23]. Judul utama "Makan apa hari ini?" dengan subjudul satu baris yang lugas (maksimal 20 kata), langsung mengarahkan ke etalase menu tanpa scroll berlebih[cite: 23].
+- Pengelompokan Jadwal Menu: Tata etalase berbasis jadwal hari rilis (Senin sampai Jumat) menggunakan chip filter horizontal berbentuk pill penuh (rounded-full)[cite: 22].
+- Grid Hidangan: Gunakan card utility bergaya Apple Store dengan sudut rounded-lg (18px), hairline border 1px solid #e0e0e0, dan background putih bersih[cite: 22].
+- Informasi Kartu: Tampilkan foto hidangan 1:1 di bagian atas, nama hidangan (font 17px tebal), label hari rilis, kuota porsi tersisa (misal: "Sisa 5 Porsi"), harga Rupiah yang jelas, serta tombol pill "Pesan Porsi" warna Action Blue[cite: 17, 18, 22].
+
+4. Layout Detail Menu & Alur Pesanan (app/produk/[id]/page.jsx):
+- Tampilkan foto hidangan dalam ukuran besar berpusat di layar dengan bayangan sistem produk[cite: 22].
+- Sediakan panel konfigurasi ringkas: pemilih jumlah porsi, ringkasan porsi dan estimasi kalori/gizi, catatan jadwal pengiriman jam 11.00 WIB, serta kalkulasi total harga dinamis.
+- Tombol WhatsApp utama berbentuk full-pill dengan efek tekan active:scale-[0.95][cite: 22], yang langsung membuka WhatsApp dengan format pesanan rapi dan kolom alamat pengantaran[cite: 19].
+
+5. Navigasi & Footer (components/Header.jsx & components/Footer.jsx):
+- Header: Buat baris tunggal ramping setinggi 44px-52px dengan backdrop-blur tipis, menampilkan nama brand di sisi kiri dan tautan navigasi ringkas di sisi kanan[cite: 22, 23].
+- Footer: Berlatar Canvas Parchment (#f5f5f7), teks muted 12px, menampilkan identitas "Makan Apa Hari Ini", panduan pre-order, dan tautan admin tanpa teks klise AI[cite: 22, 23].
+
+**Hasil:**
+
+
+**Perbaikan:**
+-
