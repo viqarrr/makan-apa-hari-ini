@@ -39,17 +39,18 @@ export async function proxy(request) {
   } = await supabase.auth.getUser();
 
   const { pathname } = request.nextUrl;
+  const isLoginPage = pathname === "/admin/login" || pathname === "/admin/login/";
 
-  // Jika pengguna belum login dan membuka halaman admin (kecuali /admin/login)
-  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+  // Jika pengguna belum login dan membuka rute /admin (selain halaman login)
+  if (pathname.startsWith("/admin") && !isLoginPage) {
     if (!user) {
       const loginUrl = new URL("/admin/login", request.url);
       return NextResponse.redirect(loginUrl);
     }
   }
 
-  // Jika sudah login dan membuka /admin/login, alihkan ke /admin
-  if (pathname === "/admin/login" && user) {
+  // Jika sudah login dan membuka /admin/login, alihkan langsung ke /admin
+  if (isLoginPage && user) {
     const adminUrl = new URL("/admin", request.url);
     return NextResponse.redirect(adminUrl);
   }
@@ -62,4 +63,3 @@ export const middleware = proxy;
 export const config = {
   matcher: ["/admin", "/admin/:path*"],
 };
-
